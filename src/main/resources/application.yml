@@ -1,0 +1,39 @@
+#??
+server:
+  port: 4399
+
+#----------Spring config START---------
+spring:
+  #????
+  application:
+    name: user-sever
+  #???
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123
+    url: jdbc:mysql://localhost:3306/springdata?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2b8
+  #Spring data JPA
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+      #??????
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    #?????sql
+    show-sql: true
+    properties:
+      hibernate:
+        temp:
+          #?????????? org.postgresql.jdbc.PgConnection.createClob() ????????
+          use_jdbc_metadata_defaults: false
+#------OVER-------
+
+# THYMELEAF ???????
+thymeleaf:
+  cache: false
+  prefix: classpath:/templates/
+  suffix: .html
+  encoding: UTF-8
+  content-type: text/html
+  mode: HTML5
