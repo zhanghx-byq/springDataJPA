@@ -1,39 +1,51 @@
-#??
+#
 server:
   port: 4399
 
 #----------Spring config START---------
 spring:
-  #????
+  #应用
   application:
     name: user-sever
-  #???
+  #数据源
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123
     url: jdbc:mysql://localhost:3306/springdata?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2b8
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #初始建立物理连接的个数
+      initial-size: 5
+      #最小连接池
+      min-idle: 5
+      #最多连接数
+      max-active: 20
+      #获取连接的最长等待时间，单位毫秒
+      max-wait: 60000
+
+
+  # THYMELEAF
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+
   #Spring data JPA
   jpa:
     hibernate:
       ddl-auto: none
       naming:
-      #??????
+      #驼峰命名
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    #?????sql
+
     show-sql: true
     properties:
       hibernate:
         temp:
-          #?????????? org.postgresql.jdbc.PgConnection.createClob() ????????
           use_jdbc_metadata_defaults: false
 #------OVER-------
 
-# THYMELEAF ???????
-thymeleaf:
-  cache: false
-  prefix: classpath:/templates/
-  suffix: .html
-  encoding: UTF-8
-  content-type: text/html
-  mode: HTML5
+
